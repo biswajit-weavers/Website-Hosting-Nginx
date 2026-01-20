@@ -14,4 +14,4 @@ echo "HOST_IP=$HOST_IP" > .env
 echo "Using HOST_IP=$HOST_IP"
 
 # Run Docker Compose with project name 'monster'
-docker-compose -p monster up -d
+docker-compose -p monster-new up -d
