@@ -8,7 +8,7 @@ services:
     environment:
       - BASE_API_URL=http://${HOST_IP}:3000
     ports:
-      - "8080:80"
+      - "8081:80"
     depends_on:
       - backend
     networks:
@@ -50,3 +50,4 @@ volumes:
 
 networks:
   app-network:
+
