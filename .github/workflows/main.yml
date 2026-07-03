@@ -5,21 +5,37 @@ on:
     branches:
       - main
 
+  workflow_dispatch:
+
 jobs:
   deploy:
     runs-on: self-hosted
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-      - run: docker build -t mywebsite .
+      - name: Show Repository Structure
+        run: |
+          pwd
+          ls -la
+          find . -maxdepth 2
 
-      - run: |
-          docker stop mywebsite || true
-          docker rm mywebsite || true
+      - name: Check Docker
+        run: |
+          docker --version
+          docker compose version
 
-      - run: |
-          docker run -d \
-            --name mywebsite \
-            -p 8080:80 \
-            mywebsite
+      - name: Stop Existing Containers
+        run: |
+          docker compose down || true
+
+      - name: Build and Start Containers
+        run: |
+          docker compose up -d --build
+
+      - name: Show Running Containers
+        run: docker ps
+
+      - name: Show Docker Compose Status
+        run: docker compose ps
