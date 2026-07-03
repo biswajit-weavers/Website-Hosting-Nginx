@@ -1,0 +1,25 @@
+name: Deploy Website
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: docker build -t mywebsite .
+
+      - run: |
+          docker stop mywebsite || true
+          docker rm mywebsite || true
+
+      - run: |
+          docker run -d \
+            --name mywebsite \
+            -p 8080:80 \
+            mywebsite
