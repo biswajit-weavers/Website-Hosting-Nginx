@@ -7,11 +7,9 @@ Portfolio
 5. Install Docker
 6. Create Docker file or You can use My Dockerfile
 7. docker bulid -t mypage .
-8. docker run -d -p 8081:80 -v $(pwd):/usr/share/nginx/html mywebnginx
-
+8. docker run -d -p 8081:80 -v $(pwd):/usr/share/nginx/html mywebnginx  
 
 ======================Boom================================
-
 
 Git Hut Jenkins Pipeline Setup for CI-CD
 1.	 Setup One Jenkins Server (On prem or EC2)
